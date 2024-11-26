@@ -6,16 +6,25 @@ import React, { useEffect, useContext, useState, useMemo } from "react";
 import { useSession } from "next-auth/react";
 import { ProductContext } from "./provider/ProductContext";
 import NotFound from "./animData/noReviews.json";
-import { RiHeartLine, RiHeartFill, RiStarLine, RiStarFill, RiStarHalfFill } from "react-icons/ri";
+import {
+  RiHeartLine,
+  RiHeartFill,
+  RiStarLine,
+  RiStarFill,
+  RiStarHalfFill,
+} from "react-icons/ri";
 import Skeleton from "./components/skeleton";
 import { UserContext } from "./provider/UserContext";
 import { Toaster, toast } from "react-hot-toast";
-import Lottie from "lottie-react";
+import dynamic from "next/dynamic";
 import ProductCard from "./components/ProductCard";
-import { motion, useInView } from "framer-motion"; // Import framer-motion and useInView
+import { motion } from "framer-motion";
+
+// Dynamically import Lottie to handle server-side rendering issues
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 const Page = () => {
-  const { products, filteredProducts, loading, fetchProducts } = useContext(ProductContext);
+  const { products, loading, fetchProducts } = useContext(ProductContext);
   const [visibleNewArrivals, setVisibleNewArrivals] = useState(12);
   const [visibleTopRated, setVisibleTopRated] = useState(12);
   const [visibleFeatured, setVisibleFeatured] = useState(12);
@@ -38,7 +47,10 @@ const Page = () => {
   const topRatedProducts = useMemo(() => {
     return products.filter((product) => {
       if (!product.reviews || product.reviews.length === 0) return false;
-      const totalRating = product.reviews.reduce((acc, review) => acc + review.rating, 0);
+      const totalRating = product.reviews.reduce(
+        (acc, review) => acc + review.rating,
+        0
+      );
       const averageRating = totalRating / product.reviews.length;
       return averageRating >= 3.5;
     });
@@ -47,9 +59,8 @@ const Page = () => {
   const featuredProducts = useMemo(() => products, [products]);
 
   const toggleWishlist = async (productId) => {
-    console.log(productId)
     if (!session?.user?.id) {
-      alert("Please log in to manage your wishlist.");
+      toast.error("Please log in to manage your wishlist.");
       return;
     }
 
@@ -81,10 +92,6 @@ const Page = () => {
     }
   };
 
-  const applyDiscount = (productId) => {
-    toast.success("Discount applied to product!");
-  };
-
   // Define animation variants
   const animationVariants = {
     hidden: { opacity: 0, x: -100 },
@@ -101,24 +108,34 @@ const Page = () => {
           ))}
         </div>
       ) : (
-        <div className="w-full h-full p-5 flex flex-col gap-10 phone:p-1 ">
+        <div className="w-full h-full p-5 flex flex-col gap-10 phone:p-1">
           {/* New Arrivals Section */}
           {newArrivals.length > 0 && (
             <motion.div
               className="flex flex-col gap-10"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }} // Trigger the animation only once
+              viewport={{ once: true }}
               variants={animationVariants}
             >
               <motion.div className="flex flex-col gap-2">
-                <h2 className="text-2xl font-semibold phone:text-xl">New Arrivals</h2>
+                <h2 className="text-2xl font-semibold phone:text-xl">
+                  New Arrivals
+                </h2>
                 <hr className="w-48" />
               </motion.div>
-              <div className="w-full h-full flex flex-wrap items-center justify-start gap-4 ">
-                {newArrivals.slice().reverse().slice(0, visibleNewArrivals).map((product) => (
-                  <ProductCard key={product._id} product={product} toggleWishlist={toggleWishlist} />
-                ))}
+              <div className="w-full flex flex-wrap items-center justify-start gap-4">
+                {newArrivals
+                  .slice()
+                  .reverse()
+                  .slice(0, visibleNewArrivals)
+                  .map((product) => (
+                    <ProductCard
+                      key={product._id}
+                      product={product}
+                      toggleWishlist={toggleWishlist}
+                    />
+                  ))}
               </div>
               {visibleNewArrivals < newArrivals.length && (
                 <button
@@ -131,23 +148,33 @@ const Page = () => {
             </motion.div>
           )}
 
-          {/* Top Rated Section */}
+          {/* Top Rated Products Section */}
           {topRatedProducts.length > 0 && (
             <motion.div
-              className="flex flex-col gap-10 phone:gap-5  w-full"
+              className="flex flex-col gap-10 phone:gap-5"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={animationVariants}
             >
-              <motion.div className="flex flex-col gap-2 phone:gap-1 ">
-                <h2 className="text-2xl font-semibold phone:text-xl">Top Rated Products</h2>
+              <motion.div className="flex flex-col gap-2">
+                <h2 className="text-2xl font-semibold phone:text-xl">
+                  Top Rated Products
+                </h2>
                 <hr className="w-48" />
               </motion.div>
-              <div className="w-full h-full flex flex-wrap items-center justify-start gap-4 phone:gap-0">
-                {topRatedProducts.slice().reverse().slice(0, visibleTopRated).map((product) => (
-                  <ProductCard key={product._id} product={product} toggleWishlist={toggleWishlist} />
-                ))}
+              <div className="w-full flex flex-wrap items-center justify-start gap-4">
+                {topRatedProducts
+                  .slice()
+                  .reverse()
+                  .slice(0, visibleTopRated)
+                  .map((product) => (
+                    <ProductCard
+                      key={product._id}
+                      product={product}
+                      toggleWishlist={toggleWishlist}
+                    />
+                  ))}
               </div>
               {visibleTopRated < topRatedProducts.length && (
                 <button
@@ -168,14 +195,24 @@ const Page = () => {
             viewport={{ once: true }}
             variants={animationVariants}
           >
-            <motion.div className="flex flex-col gap-2 phone:gap-1">
-              <h2 className="text-2xl font-semibold phone:text-xl">Featured Products</h2>
+            <motion.div className="flex flex-col gap-2">
+              <h2 className="text-2xl font-semibold phone:text-xl">
+                Featured Products
+              </h2>
               <hr className="w-48" />
             </motion.div>
-            <div className="w-full h-full flex flex-wrap items-center justify-start gap-4 phone:gap-0">
-              {featuredProducts.slice().reverse().slice(0, visibleFeatured).map((product) => (
-                <ProductCard key={product._id} product={product} toggleWishlist={toggleWishlist} />
-              ))}
+            <div className="w-full flex flex-wrap items-center justify-start gap-4">
+              {featuredProducts
+                .slice()
+                .reverse()
+                .slice(0, visibleFeatured)
+                .map((product) => (
+                  <ProductCard
+                    key={product._id}
+                    product={product}
+                    toggleWishlist={toggleWishlist}
+                  />
+                ))}
             </div>
             {visibleFeatured < featuredProducts.length && (
               <button
@@ -187,12 +224,14 @@ const Page = () => {
             )}
           </motion.div>
 
-          {/* Handle No Products Found */}
-          {featuredProducts.length === 0 && newArrivals.length === 0 && topRatedProducts.length === 0 && (
-            <div className="w-full flex items-center justify-center h-screen">
-              <Lottie loop={true} animationData={NotFound} />
-            </div>
-          )}
+          {/* No Products Fallback */}
+          {featuredProducts.length === 0 &&
+            newArrivals.length === 0 &&
+            topRatedProducts.length === 0 && (
+              <div className="w-full flex items-center justify-center h-screen">
+                <Lottie loop={true} animationData={NotFound} />
+              </div>
+            )}
         </div>
       )}
     </div>
