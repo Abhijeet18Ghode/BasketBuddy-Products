@@ -1,0 +1,47 @@
+{
+  "name": "ecommerce",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@auth/mongodb-adapter": "^3.4.2",
+    "axios": "^1.7.4",
+    "bcrypt": "^5.1.1",
+    "framer-motion": "^11.5.4",
+    "lottie-react": "^2.4.0",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.3",
+    "next": "14.2.5",
+    "next-auth": "^4.24.7",
+    "nextjs-toploader": "^1.6.12",
+    "nodemailer": "^6.9.15",
+    "query-string": "^9.1.0",
+    "razorpay": "^2.9.4",
+    "rc-slider": "^11.1.5",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.2.1",
+    "react-loading-skeleton": "^3.4.0",
+    "react-medium-image-zoom": "^5.2.10",
+    "react-radio-buttons": "^1.2.2",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^6.1.13",
+    "swr": "^2.2.5",
+    "tailwind-scrollbar": "^3.1.0",
+    "update": "^0.7.4",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1"
+  }
+}
