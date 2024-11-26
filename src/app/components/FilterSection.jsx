@@ -211,8 +211,8 @@ const FilterSection = () => {
               handleStyle={{ borderColor: "#007bff" }}
             />
             <div className="flex justify-between mt-2 text-sm text-gray-600">
-              <span>₹{priceRange[0].toLocaleString()}</span>
-              <span>₹{priceRange[1].toLocaleString()}</span>
+              <span>₹{priceRange[0]}</span>
+              <span>₹{priceRange[1]}</span>
             </div>
           </div>
         </motion.div>
