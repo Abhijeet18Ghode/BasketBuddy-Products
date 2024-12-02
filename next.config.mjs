@@ -13,10 +13,15 @@ const nextConfig = {
       },
     ];
   },
-    images: {
-      domains: ['lh3.googleusercontent.com','res.cloudinary.com','www.google.com', 'whitmorerarebooks.cdn.bibliopolis.com'],
-    },
-  };
-  
-  export default nextConfig;
-  
+  images: {
+    domains: [
+      'lh3.googleusercontent.com',
+      'res.cloudinary.com',
+      'www.google.com',
+      'whitmorerarebooks.cdn.bibliopolis.com',
+      'example.com',  // Add example.com here
+    ],
+  },
+};
+
+export default nextConfig;
