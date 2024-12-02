@@ -6,7 +6,12 @@ import Image from "next/image";
 import { AiFillDelete } from "react-icons/ai";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-const CartItems = ({ products, handleIncrement, handleDecrement, deleteProduct }) => {
+const CartItems = ({
+  products,
+  handleIncrement,
+  handleDecrement,
+  deleteProduct,
+}) => {
   if (products.length === 0) {
     return <div className="text-center text-gray-500">Your cart is empty.</div>;
   }
@@ -26,13 +31,22 @@ const CartItems = ({ products, handleIncrement, handleDecrement, deleteProduct }
   );
 };
 
-const CartItem = ({ item, handleIncrement, handleDecrement, deleteProduct }) => {
+const CartItem = ({
+  item,
+  handleIncrement,
+  handleDecrement,
+  deleteProduct,
+}) => {
   const { _id, title, thumbnail, discountPrice } = item.product;
   const { quantity } = item;
 
   return (
     <div className="flex items-center justify-between bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out gap-5 phone:gap-3 phone:p-4 phone:flex-col phone:items-start">
-      <ProductDetails title={title} thumbnail={thumbnail} discountPrice={discountPrice} />
+      <ProductDetails
+        title={title}
+        thumbnail={thumbnail}
+        discountPrice={discountPrice}
+      />
       <div className="flex justify-between w-full items-center phone:mt-3">
         <QuantityControls
           productId={_id}
@@ -61,15 +75,23 @@ const ProductDetails = ({ title, thumbnail, discountPrice }) => (
       className="rounded-lg object-cover shadow-md phone:w-20 phone:h-20"
     />
     <div className="ml-6 phone:ml-0 phone:mt-2">
-      <h3 className="text-xl font-semibold text-gray-800 phone:text-lg">{title}</h3>
+      <h3 className="text-xl font-semibold text-gray-800 phone:text-lg">
+        {title}
+      </h3>
       <p className="text-gray-500 mt-1 phone:text-sm">
-        Price: <span className="font-medium text-gray-700">Rs. {discountPrice}</span>
+        Price:{" "}
+        <span className="font-medium text-gray-700">Rs. {discountPrice}</span>
       </p>
     </div>
   </div>
 );
 
-const QuantityControls = ({ productId, quantity, handleIncrement, handleDecrement }) => (
+const QuantityControls = ({
+  productId,
+  quantity,
+  handleIncrement,
+  handleDecrement,
+}) => (
   <div className="flex items-center space-x-4 phone:space-x-2">
     <button
       onClick={() => handleDecrement(productId)}
@@ -77,7 +99,9 @@ const QuantityControls = ({ productId, quantity, handleIncrement, handleDecremen
     >
       <FaMinus className="text-gray-600 phone:text-sm" />
     </button>
-    <span className="text-lg font-medium text-gray-800 phone:text-base">{quantity}</span>
+    <span className="text-lg font-medium text-gray-800 phone:text-base">
+      {quantity}
+    </span>
     <button
       onClick={() => handleIncrement(productId)}
       className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200 ease-in-out"
@@ -89,7 +113,9 @@ const QuantityControls = ({ productId, quantity, handleIncrement, handleDecremen
 
 const PriceAndDelete = ({ productId, total, deleteProduct, title }) => (
   <div className="flex items-center space-x-6 phone:space-x-3">
-    <span className="text-lg font-semibold text-gray-800 phone:text-base">Rs. {total}</span>
+    <span className="text-lg font-semibold text-gray-800 phone:text-base">
+      Rs. {total}
+    </span>
     <button
       onClick={() => deleteProduct(productId)}
       className="p-2 text-red-500 hover:text-red-600 transition-colors duration-200 ease-in-out"

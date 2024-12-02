@@ -1,7 +1,12 @@
 "use client";
 import React, { useState, useContext, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import { FaChevronDown, FaChevronUp, FaCheckSquare, FaRegSquare } from "react-icons/fa";
+import {
+  FaChevronDown,
+  FaChevronUp,
+  FaCheckSquare,
+  FaRegSquare,
+} from "react-icons/fa";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { usePathname } from "next/navigation";
@@ -9,8 +14,9 @@ import { ProductContext } from "../provider/ProductContext";
 
 const FilterSection = () => {
   const pathname = usePathname();
-  const layout = ["/", ""]; 
-  const isFilterSectionPage = layout.includes(pathname) || pathname.startsWith("/category");
+  const layout = ["/", ""];
+  const isFilterSectionPage =
+    layout.includes(pathname) || pathname.startsWith("/category");
 
   const [isCategoryOpen, setCategoryOpen] = useState(true);
   const [isBrandOpen, setBrandOpen] = useState(true);
@@ -23,10 +29,28 @@ const FilterSection = () => {
   const [selectedRatings, setSelectedRatings] = useState([]);
   const [filtersApplied, setFiltersApplied] = useState(false);
 
-  const { products, setProducts, filteredProducts, setFilteredProducts } = useContext(ProductContext);
+  const { products, setProducts, filteredProducts, setFilteredProducts } =
+    useContext(ProductContext);
 
-  const categories = ["Electronics", "Fashion", "Home & Kitchen", "Books", "Health", "Sports", "Beauty"];
-  const brands = ["Samsung", "Apple", "Nike", "Sony", "Adidas", "HP", "LG", "OnePlus"];
+  const categories = [
+    "Electronics",
+    "Fashion",
+    "Home & Kitchen",
+    "Books",
+    "Health",
+    "Sports",
+    "Beauty",
+  ];
+  const brands = [
+    "Samsung",
+    "Apple",
+    "Nike",
+    "Sony",
+    "Adidas",
+    "HP",
+    "LG",
+    "OnePlus",
+  ];
 
   const availableBrands = useMemo(() => {
     if (selectedCategories.length === 0) {
@@ -41,7 +65,9 @@ const FilterSection = () => {
 
   const handleCategoryChange = (category) => {
     setSelectedCategories((prev) =>
-      prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category]
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category]
     );
     setFiltersApplied(true);
   };
@@ -55,7 +81,9 @@ const FilterSection = () => {
 
   const handleRatingChange = (rating) => {
     setSelectedRatings((prev) =>
-      prev.includes(rating) ? prev.filter((r) => r !== rating) : [...prev, rating]
+      prev.includes(rating)
+        ? prev.filter((r) => r !== rating)
+        : [...prev, rating]
     );
     setFiltersApplied(true);
   };
@@ -69,16 +97,22 @@ const FilterSection = () => {
     let filtered = filteredProducts;
 
     if (selectedCategories.length > 0) {
-      filtered = filtered.filter((product) => selectedCategories.includes(product.category));
+      filtered = filtered.filter((product) =>
+        selectedCategories.includes(product.category)
+      );
     }
 
     if (selectedBrands.length > 0) {
-      filtered = filtered.filter((product) => selectedBrands.includes(product.brand));
+      filtered = filtered.filter((product) =>
+        selectedBrands.includes(product.brand)
+      );
     }
 
     if (priceRange.length === 2) {
       filtered = filtered.filter(
-        (product) => product.discountPrice >= priceRange[0] && product.discountPrice <= priceRange[1]
+        (product) =>
+          product.discountPrice >= priceRange[0] &&
+          product.discountPrice <= priceRange[1]
       );
     }
 
@@ -104,10 +138,18 @@ const FilterSection = () => {
     if (filtersApplied) {
       applyFilters();
     }
-  }, [selectedCategories, selectedBrands, priceRange, selectedRatings, filtersApplied]);
+  }, [
+    selectedCategories,
+    selectedBrands,
+    priceRange,
+    selectedRatings,
+    filtersApplied,
+  ]);
 
   useEffect(() => {
-    setSelectedBrands((prevBrands) => prevBrands.filter((brand) => availableBrands.includes(brand)));
+    setSelectedBrands((prevBrands) =>
+      prevBrands.filter((brand) => availableBrands.includes(brand))
+    );
   }, [availableBrands]);
 
   if (!isFilterSectionPage) {
@@ -116,7 +158,9 @@ const FilterSection = () => {
 
   return (
     <div className="w-1/6 md:w-1/4 p-4 bg-white shadow-md rounded-lg desktop:text-sm sticky top-16 phone:hidden">
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Filters</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+        Filters
+      </h2>
 
       {/* Category Filter */}
       <div className="mb-6">
@@ -129,7 +173,10 @@ const FilterSection = () => {
         </div>
         <motion.div
           initial={{ height: 0, opacity: 0 }}
-          animate={{ height: isCategoryOpen ? "auto" : 0, opacity: isCategoryOpen ? 1 : 0 }}
+          animate={{
+            height: isCategoryOpen ? "auto" : 0,
+            opacity: isCategoryOpen ? 1 : 0,
+          }}
           className="overflow-hidden p-2"
         >
           {categories.map((category, idx) => (
@@ -161,7 +208,10 @@ const FilterSection = () => {
         </div>
         <motion.div
           initial={{ height: 0, opacity: 0 }}
-          animate={{ height: isBrandOpen ? "auto" : 0, opacity: isBrandOpen ? 1 : 0 }}
+          animate={{
+            height: isBrandOpen ? "auto" : 0,
+            opacity: isBrandOpen ? 1 : 0,
+          }}
           className="overflow-hidden p-2"
         >
           {availableBrands.length > 0 ? (
@@ -197,7 +247,10 @@ const FilterSection = () => {
         </div>
         <motion.div
           initial={{ height: 0, opacity: 0 }}
-          animate={{ height: isPriceOpen ? "auto" : 0, opacity: isPriceOpen ? 1 : 0 }}
+          animate={{
+            height: isPriceOpen ? "auto" : 0,
+            opacity: isPriceOpen ? 1 : 0,
+          }}
           className="overflow-hidden p-2"
         >
           <div className="mt-2">
@@ -229,7 +282,10 @@ const FilterSection = () => {
         </div>
         <motion.div
           initial={{ height: 0, opacity: 0 }}
-          animate={{ height: isRatingOpen ? "auto" : 0, opacity: isRatingOpen ? 1 : 0 }}
+          animate={{
+            height: isRatingOpen ? "auto" : 0,
+            opacity: isRatingOpen ? 1 : 0,
+          }}
           className="overflow-hidden p-2"
         >
           {[1, 2, 3, 4, 5].map((rating, idx) => (
@@ -253,7 +309,7 @@ const FilterSection = () => {
       {/* Reset Filters */}
       <div className="text-center">
         <button
-          className="bg-red-500 text-white px-4 py-2 rounded-lg"
+          className="bg-[#3AEE58] text-white px-4 py-2 rounded-lg"
           onClick={resetFilters}
         >
           Reset Filters

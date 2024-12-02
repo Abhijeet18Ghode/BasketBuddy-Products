@@ -6,12 +6,7 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    screens: {
-      phone: {'min':'320px','max':'767px'},
-      laptop: {'min':'768px','max':'1280px'},
-      desktop: {'min':'1281px','max':'1366px'},
-      desktopxl: {'min':'1367px','max':'1920px'},
-    },
+    screens: {},
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -20,5 +15,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwind-scrollbar')],
+  plugins: [require("tailwind-scrollbar")],
 };

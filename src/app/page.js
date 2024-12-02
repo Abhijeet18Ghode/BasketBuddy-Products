@@ -99,7 +99,7 @@ const Page = () => {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full rounded-lg ">
       <Toaster />
       {loading ? (
         <div className="grid grid-cols-4 gap-6 p-5 phone:grid-cols-2 phone:gap-0 phone:p-3">
@@ -124,7 +124,7 @@ const Page = () => {
                 </h2>
                 <hr className="w-48" />
               </motion.div>
-              <div className="w-full flex flex-wrap items-center justify-start gap-4">
+              <div className="w-full flex flex-wrap items-center justify-evenly gap-4">
                 {newArrivals
                   .slice()
                   .reverse()
@@ -147,11 +147,10 @@ const Page = () => {
               )}
             </motion.div>
           )}
-
-          {/* Top Rated Products Section */}
+          {/* Top Rated Products Section     laptop:ml-12 */}
           {topRatedProducts.length > 0 && (
             <motion.div
-              className="flex flex-col gap-10 phone:gap-5"
+              className="flex flex-col gap-y-10 phone:gap-5  "
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -163,7 +162,14 @@ const Page = () => {
                 </h2>
                 <hr className="w-48" />
               </motion.div>
-              <div className="w-full flex flex-wrap items-center justify-start gap-4">
+              <div className="w-full flex flex-wrap items-center justify-evenly gap-4">
+                {/* <div
+                className={`w-full flex flex-wrap items-center ${
+                  [1, 2, 5, 7].includes(topRatedProducts.length)
+                    ? "justify-start"
+                    : "justify-center"
+                } gap-4`}
+              > */}
                 {topRatedProducts
                   .slice()
                   .reverse()
@@ -186,7 +192,6 @@ const Page = () => {
               )}
             </motion.div>
           )}
-
           {/* Featured Products Section */}
           <motion.div
             className="flex flex-col gap-10 phone:gap-5"
@@ -201,7 +206,7 @@ const Page = () => {
               </h2>
               <hr className="w-48" />
             </motion.div>
-            <div className="w-full flex flex-wrap items-center justify-start gap-4">
+            <div className="w-full flex flex-wrap items-center justify-evenly gap-4">
               {featuredProducts
                 .slice()
                 .reverse()
@@ -223,7 +228,6 @@ const Page = () => {
               </button>
             )}
           </motion.div>
-
           {/* No Products Fallback */}
           {featuredProducts.length === 0 &&
             newArrivals.length === 0 &&
@@ -237,5 +241,4 @@ const Page = () => {
     </div>
   );
 };
-
 export default Page;

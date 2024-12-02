@@ -16,7 +16,7 @@ const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" });
 import { CartProvider } from "./provider/CartContext";
 import Banner from "./components/Banner";
 import { UserProvider } from "./provider/UserContext";
-import FilterSection from "./components/FilterSection";
+// import FilterSection from "./components/FilterSection";
 
 // export const metadata = {
 //   title: "Create Next App",
@@ -49,7 +49,7 @@ export default function RootLayout({ children }) {
           zIndex={1600}
           showAtBottom={false}
         />
-        
+
         <AuthProvider>
           <UserProvider>
             <ProductProvider>
@@ -65,7 +65,7 @@ export default function RootLayout({ children }) {
                     <Subnavbar className="bg-gray-100 shadow-md border-b py-2 px-4 phone:px-2 phone:py-1" />
 
                     {/* Main Content */}
-                    <div className="w-full flex flex-col gap-5 overflow-x-hidden py-5 px-6 bg-gray-50 phone:px-2">
+                    <div className="w-full flex flex-col gap-5  overflow-x-hidden py-5 px-6 bg-gray-50 phone:px-2">
                       {/* Banner Section */}
                       <div className="flex flex-col gap-10">
                         <Banner />
@@ -73,11 +73,11 @@ export default function RootLayout({ children }) {
 
                       {/* Main Content Area */}
                       <div className="w-full flex items-start justify-start  gap-5 desktop:gap-5 phone:flex-col">
-                    <FilterSection />
-                  <div className="w-full bg-white rounded-lg shadow-lg p-1">
-                  {children}
-                  </div>
-                  </div>
+                        {/* <FilterSection /> */}
+                        <div className="w-full bg-white rounded-lg shadow-lg p-1">
+                          {children}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
