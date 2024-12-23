@@ -16,7 +16,7 @@ const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" });
 import { CartProvider } from "./provider/CartContext";
 import Banner from "./components/Banner";
 import { UserProvider } from "./provider/UserContext";
-// import FilterSection from "./components/FilterSection";
+import FilterSection from "./components/FilterSection";
 
 // export const metadata = {
 //   title: "Create Next App",
@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
                     {/* Navbar */}
                     <Navbar className="sticky top-0 z-50 bg-white shadow-lg border-b border-gray-200" />
 
-                    {/* Subnavbar */}
+                    {/* Subnavbar*/}
                     <Subnavbar className="bg-gray-100 shadow-md border-b py-2 px-4 phone:px-2 phone:py-1" />
 
                     {/* Main Content */}
@@ -73,7 +73,7 @@ export default function RootLayout({ children }) {
 
                       {/* Main Content Area */}
                       <div className="w-full flex items-start justify-start  gap-5 desktop:gap-5 phone:flex-col">
-                        {/* <FilterSection /> */}
+                        <FilterSection />
                         <div className="w-full bg-white rounded-lg shadow-lg p-1">
                           {children}
                         </div>

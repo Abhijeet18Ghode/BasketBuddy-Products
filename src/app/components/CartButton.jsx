@@ -55,16 +55,16 @@ const Button = ({ amount, productId }) => {
 
   return (
     <button
-      className="relative overflow-hidden group w-full bg-[#0C831F] text-white uppercase font-medium cursor-pointer border-none"
+      className="ml-32 overflow-hidden group w-20   text-[#318616] uppercase  font-extrabold cursor-pointer "
       onClick={() => addToCart(productId)}
     >
       {/* Default Button Content */}
-      <div className="flex items-center justify-center p-4 bg-[#0C831F] transition-transform duration-300 transform group-hover:-translate-y-full phone:p-2 gap-2">
+      <div className=" flex items-center justify-start p-2  border-2 rounded-md border-[#0C831F]   bg-[#f7fff9]  transform  phone:p-2 gap-2">
         <svg
           viewBox="0 0 24 24"
           width="20"
           height="20"
-          stroke="#ffffff"
+          stroke="#"
           strokeWidth={2}
           fill="none"
           strokeLinecap="round"
@@ -75,13 +75,13 @@ const Button = ({ amount, productId }) => {
           <circle cx="20" cy="21" r="1" className="bg-[#0C831F]" />
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
         </svg>
-        <span className="text-base phone:text-xs">Add to Cart</span>
+        <span className=" text-base phone:text-xs  pr-1">Add</span>
       </div>
 
       {/* Hover Button Content */}
-      <div className="absolute top-0 left-0 flex items-center justify-center p-4 bg-[#0C831F] transition-transform duration-300 transform translate-y-full group-hover:translate-y-0 w-full">
+      {/* <div className="absolute top-0 left-0 flex items-center justify-center p-4 bg-[#0C831F] transition-transform duration-300 transform translate-y-full group-hover:translate-y-0 w-full">
         <span className="text-base phone:text-xs">Rs.{amount}</span>
-      </div>
+      </div> */}
     </button>
   );
 };

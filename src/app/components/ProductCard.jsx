@@ -27,7 +27,7 @@ const ProductCard = ({ product, toggleWishlist }) => {
   }, [product.reviews]);
 
   return (
-    <div className="desktop:w-64 relative p-3 max-w-xs w-full h-[60vh] bg-white rounded-lg shadow-xl overflow-hidden  flex flex-col justify-between border-x border-y border-slate-200 phone:w-1/2 phone:h-[40vh] phone:px-2 phone:py-2">
+    <div className="desktop:w-64 relative p-3 max-w-xs w-60 h-[45vh] bg-white rounded-lg shadow-xl overflow-hidden  flex flex-col justify-between border-x border-y border-slate-200 phone:w-1/2 phone:h-[40vh] phone:px-2 phone:py-2">
       {/* Discount button */}
       {Math.round(
         ((product?.price - product?.discountPrice) / product?.price) * 100
@@ -95,7 +95,7 @@ const ProductCard = ({ product, toggleWishlist }) => {
               </span>
             </div>*/}
 
-            <span className="font-extrabold text-gray-800 dark:text-gray-50 flex items-center gap-3 text-xl  phone:gap-1 phone:text-md">
+            <span className="font-extrabold text-gray-800  flex items-center gap-2 text-xl  phone:gap-1 phone:text-md">
               <span className="line-through text-slate-400 text-lg desktop:text-sm phone:text-xs">
                 Rs.{product.price}
               </span>
