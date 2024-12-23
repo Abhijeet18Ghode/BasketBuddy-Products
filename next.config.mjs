@@ -14,6 +14,7 @@ const nextConfig = {
     ];
   },
   images: {
+<<<<<<< HEAD
     remotePatterns: [
       {
         protocol: "https",
@@ -35,6 +36,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.example.com",
       },
+=======
+    domains: [
+      'lh3.googleusercontent.com',
+      'res.cloudinary.com',
+      'www.google.com',
+      'whitmorerarebooks.cdn.bibliopolis.com',
+      'example.com',  // Add example.com here
+>>>>>>> 78be3113d31d6f0773323a0405d1d2dd71af0ab7
     ],
   },
 };
