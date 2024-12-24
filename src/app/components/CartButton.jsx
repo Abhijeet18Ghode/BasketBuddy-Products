@@ -55,12 +55,12 @@ const Button = ({ amount, productId }) => {
 
   return (
     <button
-      className="ml-32 overflow-hidden group w-20   text-[#318616] uppercase  font-extrabold cursor-pointer "
+      className=" overflow-hidden group w-20   text-[#318616] uppercase  font-extrabold cursor-pointer "
       onClick={() => addToCart(productId)}
     >
       {/* Default Button Content */}
-      <div className=" flex items-center justify-start p-2  border-2 rounded-md border-[#0C831F]   bg-[#f7fff9]  transform  phone:p-2 gap-2">
-        <svg
+      <div className=" flex items-center justify-center  p-1  border-2 rounded-md border-[#0C831F]   bg-[#f7fff9]  transform  phone:p-2 gap-2">
+        {/* <svg
           viewBox="0 0 24 24"
           width="20"
           height="20"
@@ -74,8 +74,8 @@ const Button = ({ amount, productId }) => {
           <circle cx="9" cy="21" r="1" className="bg-[#0C831F] " />
           <circle cx="20" cy="21" r="1" className="bg-[#0C831F]" />
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-        </svg>
-        <span className=" text-base phone:text-xs  pr-1">Add</span>
+        </svg> */}
+        <span className=" text-base phone:text-xs text-center ">Add</span>
       </div>
 
       {/* Hover Button Content */}

@@ -39,7 +39,7 @@ const ProductCard = ({ product, toggleWishlist }) => {
             )}
             <span className="text-xs">%</span>
           </h1>
-          <p className="text-sm desktop:text-xs phone:text-xs">OFF</p>
+          <p className="text-xs desktop:text-xs phone:text-xs">OFF</p>
         </button>
       )}
 
@@ -67,7 +67,7 @@ const ProductCard = ({ product, toggleWishlist }) => {
             width={400}
             height={300}
             priority={true}
-            className="object-contain bg-center bg-cover h-3/4 w-full rounded-lg p-2"
+            className="object-contain bg-center bg-cover h-3/4 w-full rounded-lg p-10"
             src={product?.thumbnail[0]}
             alt={product?.title}
           />
@@ -95,15 +95,19 @@ const ProductCard = ({ product, toggleWishlist }) => {
               </span>
             </div>*/}
 
-            <span className="font-extrabold text-gray-800  flex items-center gap-2 text-xl  phone:gap-1 phone:text-md">
-              <span className="line-through text-slate-400 text-lg desktop:text-sm phone:text-xs">
+            <span className=" text-gray-800  flex items-center gap-2   phone:gap-1 phone:text-md">
+              <span className="line-through text-slate-400 text-sm desktop:text-sm phone:text-xs">
                 Rs.{product.price}
               </span>
-              Rs.{product.discountPrice}
+              <span className="text-md font-extrabold">
+                {" "}
+                Rs.{product.discountPrice}
+              </span>
             </span>
           </div>
         </Link>
-        <div className="w-full">
+        <div className="w-full flex items-center justify-between">
+          <h1 className="text-sm font-bold text-[#318616] ">100 gm</h1>
           <Button amount={product.discountPrice} productId={product._id} />
         </div>
       </div>

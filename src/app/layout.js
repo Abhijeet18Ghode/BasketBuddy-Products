@@ -72,8 +72,8 @@ export default function RootLayout({ children }) {
                       </div>
 
                       {/* Main Content Area */}
-                      <div className="w-full flex items-start justify-start  gap-5 desktop:gap-5 phone:flex-col">
-                        <FilterSection />
+                      <div className="w-full flex items-start justify-center  gap-5 desktop:gap-5 phone:flex-col">
+                        {/* <FilterSection /> */}
                         <div className="w-full bg-white rounded-lg shadow-lg p-1">
                           {children}
                         </div>

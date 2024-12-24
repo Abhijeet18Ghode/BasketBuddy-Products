@@ -30,6 +30,17 @@ const Page = () => {
   const [visibleFeatured, setVisibleFeatured] = useState(12);
   const { data: session } = useSession();
   const { user, fetchUserData } = useContext(UserContext);
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (index) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
+        delay: index * 0.2, // Stagger animation based on index
+      },
+    }),
+  };
 
   useEffect(() => {
     fetchProducts();
@@ -102,8 +113,8 @@ const Page = () => {
     <div className="w-full h-full rounded-lg ">
       <Toaster />
       {loading ? (
-        <div className="grid grid-cols-4 gap-6 p-5 phone:grid-cols-2 phone:gap-0 phone:p-3">
-          {Array.from({ length: 8 }).map((_, index) => (
+        <div className="grid grid-cols-5 gap-1 p-10 phone:grid-cols-2 phone:gap-0 phone:p-3 place-items-center">
+          {Array.from({ length: 10 }).map((_, index) => (
             <Skeleton key={index} />
           ))}
         </div>
@@ -163,13 +174,6 @@ const Page = () => {
                 <hr className="w-48" />
               </motion.div>
               <div className="w-full flex flex-wrap items-center justify-evenly gap-4">
-                {/* <div
-                className={`w-full flex flex-wrap items-center ${
-                  [1, 2, 5, 7].includes(topRatedProducts.length)
-                    ? "justify-start"
-                    : "justify-center"
-                } gap-4`}
-              > */}
                 {topRatedProducts
                   .slice()
                   .reverse()
@@ -198,7 +202,7 @@ const Page = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={animationVariants}
+            variants={cardVariants}
           >
             <motion.div className="flex flex-col gap-2">
               <h2 className="text-2xl font-semibold phone:text-xl">
@@ -206,28 +210,24 @@ const Page = () => {
               </h2>
               <hr className="w-48" />
             </motion.div>
-            <div className="w-full flex flex-wrap items-center justify-evenly gap-4">
-              {featuredProducts
-                .slice()
-                .reverse()
-                .slice(0, visibleFeatured)
-                .map((product) => (
+            <div className="w-full flex flex-wrap items-center justify-center gap-4">
+              {featuredProducts.reverse().map((product, index) => (
+                <motion.div
+                  key={product._id}
+                  custom={index} // Pass the index for staggered animation
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
                   <ProductCard
-                    key={product._id}
                     product={product}
                     toggleWishlist={toggleWishlist}
                   />
-                ))}
+                </motion.div>
+              ))}
             </div>
-            {visibleFeatured < featuredProducts.length && (
-              <button
-                onClick={() => setVisibleFeatured(featuredProducts.length)}
-                className="w-full border px-4 py-3 rounded-full"
-              >
-                View More
-              </button>
-            )}
           </motion.div>
+
           {/* No Products Fallback */}
           {featuredProducts.length === 0 &&
             newArrivals.length === 0 &&
