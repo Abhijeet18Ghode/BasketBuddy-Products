@@ -28,9 +28,9 @@ export default function BannerSlider() {
     <div className="w-full">
       <Slider {...settings}>
         {/* Slide 1 */}
-        <div className="relative w-full h-[35vh] rounded-xl shadow-md border-x border-y border-slate-50 outline-none phone:h-[25vh]">
+        <div className="relative w-full h-[70vh] rounded-xl shadow-md border-x border-y border-slate-50 outline-none phone:h-[25vh]">
           <Image
-            src="/logo/banner1.jpeg"
+            src="/logo/banner1.png"
             alt="Banner 1"
             layout="fill" // Fills the parent container
             className="rounded-xl phone:w-full phone:h-full object-contain phone:object-cover"
@@ -38,9 +38,9 @@ export default function BannerSlider() {
         </div>
 
         {/* Slide 2 */}
-        <div className="relative w-full h-[35vh] rounded-xl shadow-md border-x border-y border-slate-50 outline-none phone:h-[25vh]">
+        <div className="relative w-full h-[70vh] rounded-xl shadow-md border-x border-y border-slate-50 outline-none phone:h-[25vh]">
           <Image
-            src="/logo/banner2.jpeg"
+            src="/logo/banner2.png"
             alt="Banner 2"
             layout="fill"
             className="rounded-xl phone:w-full phone:h-full object-contain phone:object-cover"
@@ -48,12 +48,11 @@ export default function BannerSlider() {
         </div>
 
         {/* Slide 3 */}
-        <div className="relative w-full h-[35vh] rounded-xl shadow-md border-x border-y border-slate-50 outline-none phone:h-[25vh]">
+        <div className="relative w-full h-[70vh] rounded-xl shadow-md border-x border-y border-slate-50 outline-none phone:h-[25vh]">
           <Image
-            src="/logo/banner3.jpeg"
+            src="/logo/banner3.png"
             alt="Banner 3"
             layout="fill"
-          
             className="rounded-xl phone:w-full phone:h-full object-contain phone:object-cover"
           />
         </div>
