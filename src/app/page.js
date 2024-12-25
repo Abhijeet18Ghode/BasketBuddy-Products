@@ -119,7 +119,7 @@ const Page = () => {
           ))}
         </div>
       ) : (
-        <div className="w-full h-full p-5 flex flex-col gap-10 phone:p-1">
+        <div className="w-full h-full  flex flex-col gap-10 phone:p-1">
           {/* New Arrivals Section */}
           {newArrivals.length > 0 && (
             <motion.div
@@ -210,21 +210,23 @@ const Page = () => {
               </h2>
               <hr className="w-48" />
             </motion.div>
-            <div className="w-full flex flex-wrap items-center justify-center gap-4">
-              {featuredProducts.reverse().map((product, index) => (
-                <motion.div
-                  key={product._id}
-                  custom={index} // Pass the index for staggered animation
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <ProductCard
-                    product={product}
-                    toggleWishlist={toggleWishlist}
-                  />
-                </motion.div>
-              ))}
+            <div className="w-full flex items-center justify-center">
+              <div className="w-full flex flex-wrap items-center justify-start gap-2">
+                {featuredProducts.reverse().map((product, index) => (
+                  <motion.div
+                    key={product._id}
+                    custom={index} // Pass the index for staggered animation
+                    variants={cardVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <ProductCard
+                      product={product}
+                      toggleWishlist={toggleWishlist}
+                    />
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
 

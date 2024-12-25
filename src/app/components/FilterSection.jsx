@@ -157,7 +157,7 @@ const FilterSection = () => {
   }
 
   return (
-    <div className="w-1/6 md:w-1/4 p-4 bg-white shadow-md rounded-lg desktop:text-sm sticky top-16 phone:hidden">
+    <div className="w-full md:w-1/4 p-4 bg-white shadow-md rounded-lg desktop:text-sm sticky top-16 phone:hidden">
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
         Filters
       </h2>
@@ -264,8 +264,8 @@ const FilterSection = () => {
               handleStyle={{ borderColor: "#007bff" }}
             />
             <div className="flex justify-between mt-2 text-sm text-gray-600">
-              <span>₹{priceRange[0]}</span>
-              <span>₹{priceRange[1]}</span>
+              <span>₹{priceRange[0].toLocaleString()}</span>
+              <span>₹{priceRange[1].toLocaleString()}</span>
             </div>
           </div>
         </motion.div>
@@ -309,7 +309,7 @@ const FilterSection = () => {
       {/* Reset Filters */}
       <div className="text-center">
         <button
-          className="bg-[#3AEE58] text-white px-4 py-2 rounded-lg"
+          className="bg-red-500 text-white px-4 py-2 rounded-lg"
           onClick={resetFilters}
         >
           Reset Filters
