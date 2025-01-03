@@ -1,22 +1,25 @@
-// components/ProductCard.js
+import React, { useState, useContext, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { UserContext } from "../provider/UserContext";
-import { useMemo, useContext } from "react";
 import Button from "./CartButton";
 
-import {
-  RiHeartLine,
-  RiHeartFill,
-  RiStarLine,
-  RiStarFill,
-  RiStarHalfFill,
-} from "react-icons/ri";
+import { RiHeartLine, RiHeartFill } from "react-icons/ri";
 
 const ProductCard = ({ product, toggleWishlist }) => {
   const { user } = useContext(UserContext); // Ensure UserContext is available
 
-  // Calculate the average rating
+  const [selectedVariant, setSelectedVariant] = useState(
+    product.variants[0] || {} // Default to the first variant
+  );
+
+  // Handle dropdown change
+  const handleVariantChange = (event) => {
+    const variantIndex = event.target.value;
+    setSelectedVariant(product.variants[variantIndex]);
+  };
+
+  // Calculate the average rating (if required for future use)
   const averageRating = useMemo(() => {
     if (!product.reviews || product.reviews.length === 0) return 0;
     const totalRating = product.reviews.reduce(
@@ -27,12 +30,12 @@ const ProductCard = ({ product, toggleWishlist }) => {
   }, [product.reviews]);
 
   return (
-    <div className="desktop:w-64 relative p-3 max-w-xs w-60 h-[45vh] bg-white rounded-lg shadow-xl overflow-hidden  flex flex-col justify-between border-x border-y border-slate-200 phone:w-1/2 phone:h-[40vh] phone:px-2 phone:py-2">
+    <div className="desktop:w-64 relative p-3 max-w-xs w-60 h-[45vh] bg-white rounded-lg shadow-xl overflow-hidden flex flex-col justify-between border-x border-y border-slate-200 phone:w-1/2 phone:h-[40vh] phone:px-2 phone:py-2">
       {/* Discount button */}
       {Math.round(
         ((product?.price - product?.discountPrice) / product?.price) * 100
       ) >= 5 && (
-        <button className="desktop:text-sm absolute top-0 left-2 p-1  shadow-md  z-10 bg-[#538cee] text-white  border flex flex-col items-center font-bold w-10 h-12 desktop:w-14 desktop:h-14 phone:text-sm phone:w-12 phone:h-12">
+        <button className="desktop:text-sm absolute top-0 left-2 p-1 shadow-md z-10 bg-[#538cee] text-white border flex flex-col items-center font-bold w-10 h-12 desktop:w-14 desktop:h-14 phone:text-sm phone:w-12 phone:h-12">
           <h1>
             {Math.round(
               ((product?.price - product?.discountPrice) / product?.price) * 100
@@ -45,7 +48,7 @@ const ProductCard = ({ product, toggleWishlist }) => {
 
       {/* Wishlist button */}
       <button
-        className="desktop:text-lg absolute top-1 right-1 p-2 rounded-full shadow-md text-2xl z-10 bg-white hover:bg-gray-200  border phone:text-sm phone:top-2"
+        className="desktop:text-lg absolute top-1 right-1 p-2 rounded-full shadow-md text-2xl z-10 bg-white hover:bg-gray-200 border phone:text-sm phone:top-2"
         onClick={() => toggleWishlist(product._id)}
       >
         {user?.user?.wishlist?.items?.some(
@@ -75,40 +78,30 @@ const ProductCard = ({ product, toggleWishlist }) => {
             <h2 className="desktop:text-sm text-lg font-bold text-gray-800 dark:text-black line-clamp-2 phone:text-sm phone:line-clamp-1">
               {product.title}
             </h2>
-            {/*  <div className="flex items-center gap-1 phone:hidden">
-            <h1 className="flex items-center gap-1">
-                {Array.from({ length: 5 }).map((_, i) => {
-                  if (averageRating >= i + 1) {
-                    return <RiStarFill key={i} className="text-yellow-400" />;
-                  } else if (averageRating >= i + 0.5) {
-                    return (
-                      <RiStarHalfFill key={i} className="text-yellow-400" />
-                    );
-                  } else {
-                    return <RiStarLine key={i} className="text-yellow-400" />;
-                  }
-                })}
-              </h1> 
-
-              <span className="text-gray-600 dark:text-gray-400 ml-2 desktop:text-sm phone:text-sm phone:hidden">
-                ({product.reviews.length} reviews)
-              </span>
-            </div>*/}
-
-            <span className=" text-gray-800  flex items-center gap-2   phone:gap-1 phone:text-md">
+            <span className="text-gray-800 flex items-center gap-2 phone:gap-1 phone:text-md">
               <span className="line-through text-slate-400 text-sm desktop:text-sm phone:text-xs">
-                Rs.{product.price}
+                Rs.{selectedVariant?.price || product.price}
               </span>
               <span className="text-md font-extrabold">
-                {" "}
-                Rs.{product.discountPrice}
+                Rs.{selectedVariant?.discountPrice || product.discountPrice}
               </span>
             </span>
           </div>
         </Link>
-        <div className="w-full flex items-center justify-between">
-          <h1 className="text-sm font-bold text-[#318616] ">100 gm</h1>
-          <Button amount={product.discountPrice} productId={product._id} />
+
+        {/* Dropdown for variants */}
+        <div className="w-full flex items-center justify-between mt-2">
+          <select
+            className="border rounded px-2 py-1 text-sm"
+            onChange={handleVariantChange}
+          >
+            {product.variants.map((variant, index) => (
+              <option key={index} value={index}>
+                {variant.weight} gm
+              </option>
+            ))}
+          </select>
+          <Button amount={selectedVariant?.discountPrice || product.discountPrice} productId={product._id} />
         </div>
       </div>
     </div>

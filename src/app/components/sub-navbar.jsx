@@ -50,7 +50,7 @@ const Subnavbar = () => {
           //     <SubnavbarSkeleton key={index} />
           //   ))}
           // </div>
-          categories.map((cat) => (
+          categories?.map((cat) => (
             <Link
               href={`/category/${cat?.name?.toLowerCase()}`}
               key={cat.name}
@@ -67,10 +67,10 @@ const Subnavbar = () => {
                 transition={{ duration: 0.1 }}
               >
                 <Image
-                  src={`/icons/${cat?.name?.toLowerCase()}.png`}
+                  src={`${cat?.image}`}
                   width={200}
                   height={200}
-                  className="w-14 h-14  object-contain bg-cover desktop:w-12 desktop:h-12 phone:w-10 phone:h-10"
+                  className="w-14 h-14 object-contain bg-cover desktop:w-12 desktop:h-12 phone:w-10 phone:h-10"
                 />
                 <h1 className="desktop:text-sm phone:text-xs">{cat.name}</h1>
               </motion.button>
