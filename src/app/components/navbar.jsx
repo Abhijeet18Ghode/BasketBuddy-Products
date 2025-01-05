@@ -396,7 +396,11 @@ import { GoCodeReview } from "react-icons/go";
 import { FaMoneyBill1Wave } from "react-icons/fa6";
 import { BsShieldFillPlus } from "react-icons/bs";
 
+
 const Navbar = () => {
+  const path = usePathname();
+  const homeRoute = ["", "/"];
+  const isHome = homeRoute.includes(path);
   const { products } = useContext(ProductContext);
   const { cartData } = useCart();
   const { data: session } = useSession();
@@ -470,8 +474,17 @@ const Navbar = () => {
   }
 
   return (
-    <div className="flex items-center w-full h-[8.5vh] justify-between p-4 sticky top-0 z-50 bg-green-300">
-      <Link href={"/"} className="desktop:text-xl phone:text-xl">
+    <div className="flex items-center w-full h-[8.5vh] justify-between p-4 sticky top-0 z-50 bg-[#ffc300]">
+     {
+      isHome ?  <h1 className="desktop:text-xl phone:text-xl cursor-pointer">
+      <Image
+        src="/logo/bb.png"
+        alt="BasketBuddy Logo"
+        width={90}
+        height={90}
+        priority
+      />
+    </h1> :  <Link href={"/"} className="desktop:text-xl phone:text-xl">
         <Image
           src="/logo/bb.png"
           alt="BasketBuddy Logo"
@@ -480,18 +493,20 @@ const Navbar = () => {
           priority
         />
       </Link>
+     }
       <div className="flex items-center w-2/5  phone:w-1/4">
         <input
           ref={inputRef}
-          className="outline-none border pl-5 pr-5 pt-2 pb-2 rounded-lg w-full"
+          className="outline-none border pl-5 pr-5 pt-2 pb-2 rounded-full w-full"
           placeholder="Search"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           onFocus={() => setIsDropDown(true)}
         />
-        <CiSearch
+        <CiSearch 
+        
           onClick={submitHandler}
-          className="-translate-x-10 text-3xl cursor-pointer"
+          className="-translate-x-10 text-2xl cursor-pointer "
         />
         {isDropDown && (
           <div

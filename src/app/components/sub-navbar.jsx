@@ -40,7 +40,7 @@ const Subnavbar = () => {
   }
 
   return (
-    <div className="flex items-center justify-evenly pt-2 pb-2 pl-7 pr-7 w-full text-slate-400 overflow-x-scroll scrollbar-none phone:gap-10 phone:w-auto phone:justify-start">
+    <div className="flex items-center justify-evenly pt-3 pb-3 pl-7 pr-7 w-full text-white bg-[#003566] font-extrabold overflow-x-scroll scrollbar-none phone:gap-10 phone:w-auto phone:justify-start">
       <AnimatePresence mode="wait">
         {loading ? (
           <div>Loading...</div>
