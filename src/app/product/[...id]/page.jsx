@@ -357,12 +357,12 @@ const Page = () => {
 
             <hr className="w-full my-4" />
 
-            {/* Product Variants */}
+            {/* Product Variants
             <div className="w-full flex">
               {productDetail?.variants?.length > 0 ? (
                 productDetail.variants.map((variant) => (
                   <div key={variant._id} className="flex flex-col gap-2">
-                    {/* Display "Available" message for the variant */}
+                    {/* Display "Available" message for the variant
                     <h1 className="text-sm font-extrabold text-slate-400">
                       Available:{" "}
                       {variant.attributes
@@ -370,7 +370,7 @@ const Page = () => {
                         .join(", ")}
                     </h1>
 
-                    {/* Button group for variant attributes */}
+                    {/* Button group for variant attributes 
                     <div className="flex gap-3">
                       {variant.attributes.map((attribute) => (
                         <button
@@ -392,96 +392,13 @@ const Page = () => {
                   No Variants Available
                 </h1>
               )}
-            </div>
+            </div> */}
 
             <hr className="w-full my-4" />
 
             {/* Quantity Selector */}
-            {/* <div className="flex items-center gap-5 w-full">
-        <div className="flex items-center gap-1 border border-slate-400 w-1/6 pl-5 pr-5 pt-3 pb-3 justify-between text-xl desktop:pt-1 desktop:pb-1 desktop:pl-3 desktop:pr-3 desktop:text-lg phone:w-1/3">
-          <button
-            onClick={() => setQuantityCount(prev => Math.max(prev - 1, 1))}
-            className="focus:outline-none"
-          >
-            <LuMinus />
-          </button>
-          <h1>{quantityCount}</h1>
-          <button
-            onClick={() => setQuantityCount(prev => prev + 1)}
-            className="focus:outline-none"
-          >
-            <LuPlus />
-          </button>
-        </div>
-        <div className="flex items-center gap-5">
-          <h2 className="text-xl font-extrabold text-slate-400 desktop:text-lg phone:text-lg">
-            Available Stocks
-          </h2>
-          <h1 className="text-xl desktop:text-lg">{productDetail.stockQuantity}</h1>
-        </div>
-      </div> */}
-
-            {/* <hr className="w-full my-4" /> */}
-
-            {/* Shipping Information */}
-            <div className="w-full flex items-center justify-between desktop:mb-4">
-              <div className="w-1/3 flex flex-col items-center justify-center">
-                <Image
-                  src={"/logo/shipped.png"}
-                  width={50}
-                  height={50}
-                  alt="Shipping"
-                  className="desktop:w-10 desktop:h-10 phone:w-8"
-                />
-                <h1 className="desktop:text-lg phone:text-lg">Shipping</h1>
-                <p className="font-bold desktop:text-sm phone:text-sm">
-                  7 Days
-                </p>
-              </div>
-              <div className="w-1/3 flex flex-col items-center justify-center">
-                <Image
-                  src={"/logo/exchange.png"}
-                  width={50}
-                  height={50}
-                  alt="Return"
-                  className="desktop:w-10 desktop:h-10 phone:w-8"
-                />
-                <h1 className="desktop:text-lg phone:text-lg">Return</h1>
-                <p className="font-bold desktop:text-sm phone:text-sm">
-                  {productDetail.returnPolicy} Days
-                </p>
-              </div>
-              <div className="w-1/3 flex flex-col items-center justify-center">
-                <Image
-                  src={"/logo/guarantee.png"}
-                  width={50}
-                  height={50}
-                  alt="Warranty"
-                  className="desktop:w-10 desktop:h-10 phone:w-8"
-                />
-                <h1 className="desktop:text-lg phone:text-lg">Warranty</h1>
-                <p className="font-bold desktop:text-sm phone:text-sm">
-                  {productDetail.warranty} Days
-                </p>
-              </div>
-            </div>
 
             <hr className="w-full" />
-            {/* Cart and Buy Buttons */}
-            {/* <div className="w-full flex items-center  gap-3">
-              <button
-                onClick={() => addToCart(productDetail._id)}
-                className="w-1/2 text-xl border-x border-y border-gray-700 p-3 font-bold rounded-lg"
-              >
-                Add to Cart
-              </button>
-              <button
-                onClick={() => handleBuyNow(productDetail._id)}
-                className="w-1/2 text-xl border-x border-y border-gray-700 p-3 font-bold bg-gray-700 text-white rounded-lg"
-              >
-                Buy Now
-              </button>
-            </div> */}
           </div>
         </div>
 
@@ -489,7 +406,7 @@ const Page = () => {
         <div className="flex justify-center gap-10 mt-5 w-full phone:gap-5">
           <button
             onClick={() => handleTabChange("details")}
-            className={`p-2 text-xl w-1/3 desktop:text-lg phone:text-xs phone:p-1 ${
+            className={`p-2 text-xl w-1/2 desktop:text-lg phone:text-xs phone:p-1 ${
               activeTab === "details"
                 ? "font-extrabold border-b-2 border-black transition-all ease-in-out duration-150 flex items-center justify-center  gap-3 phone:flex-col"
                 : "flex items-center justify-center  gap-3 phone:flex-col"
@@ -505,7 +422,7 @@ const Page = () => {
           </button>
           <button
             onClick={() => handleTabChange("reviews")}
-            className={`p-2 text-xl w-1/3 desktop:text-lg phone:text-xs  phone:p-1 ${
+            className={`p-2 text-xl w-1/2 desktop:text-lg phone:text-xs  phone:p-1 ${
               activeTab === "reviews"
                 ? "font-extrabold border-b-2 border-black transition-all ease-in-out duration-150 flex items-center justify-center  gap-3 phone:flex-col"
                 : "flex items-center justify-center  gap-3 phone:flex-col"
@@ -519,30 +436,13 @@ const Page = () => {
             />
             Rating & Reviews {productDetail?.reviews?.length}
           </button>
-
-          <button
-            onClick={() => handleTabChange("discussion")}
-            className={`p-2 text-xl w-1/3 desktop:text-lg phone:text-xs  phone:p-1 ${
-              activeTab === "discussion"
-                ? " font-extrabold border-b-2 border-black transition-all ease-in-out duration-150 flex items-center justify-center  gap-3 phone:flex-col"
-                : "flex items-center justify-center  gap-3 phone:flex-col"
-            }`}
-          >
-            <Image
-              src="/icons/discuss.png"
-              width={35}
-              height={35}
-              className="phone:w-6 phone:h-6"
-            />
-            Discussion
-          </button>
         </div>
 
         {/* Tab Content */}
         <div className="w-full ">
           {activeTab === "details" && (
             <motion.div
-              className="flex flex-col gap-5 w-full h-[100vh] "
+              className="flex flex-col gap-5 w-full h-auto "
               initial="initial"
               animate="enter"
               exit="exit"
@@ -550,8 +450,8 @@ const Page = () => {
               transition={{ duration: 0.5 }} // Adjust duration as needed
             >
               {/* Your Details Tab Content */}
-              <div className="flex flex-col items-start justify-between  w-full h-1/3 p-5 shadow-md rounded-lg border-x border-y overflow-auto scrollbar-none phone:p-2">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col items-start justify-between  w-full h-[25vh] p-5 shadow-md rounded-lg border-x border-y overflow-auto scrollbar-none phone:p-2">
+                <div className="flex items-center gap-3 h-full">
                   <Image
                     src="/icons/desc.png"
                     width={35}
@@ -562,105 +462,10 @@ const Page = () => {
                     Description
                   </h2>
                 </div>
-                <p className="text-lg phone:text-xs">
+                <p className="text-lg phone:text-xs h-full">
                   {productDetail?.description}
                 </p>
               </div>
-              <div className="w-full flex items-center gap-5 h-1/3 phone:gap-5 phone:flex-col">
-                {productDetail?.dimensions && (
-                  <div className="flex flex-col items-start justify-between  w-1/2 h-full p-5 shadow-md rounded-lg border-x border-y phone:w-full phone:h-1/2 phone:p-2">
-                    <div className="flex items-center gap-3 ">
-                      <Image
-                        src="/icons/dim.png"
-                        width={35}
-                        height={35}
-                        className="phone:w-6 phone:h-6"
-                      />
-                      <h2 className="text-2xl font-bold phone:text-sm">
-                        Product Dimensions
-                      </h2>
-                    </div>
-                    <p className="phone:text-xs">
-                      <span className="text-slate-400 ">Length</span> :{" "}
-                      {productDetail?.dimensions?.length}
-                    </p>
-                    <p className="phone:text-sm">
-                      <span className="text-slate-400">Width</span> :{" "}
-                      {productDetail?.dimensions?.width}
-                    </p>
-                    <p className="phone:text-sm">
-                      <span className="text-slate-400">Height</span> :{" "}
-                      {productDetail?.dimensions?.height}
-                    </p>
-                    <p className="phone:text-sm">
-                      <span className="text-slate-400">Weight</span> :{" "}
-                      {productDetail?.weight}
-                    </p>
-                  </div>
-                )}
-                <div className="flex flex-col items-start justify-between  w-1/2 h-full p-5 shadow-md rounded-lg border-x border-y overflow-auto scrollbar-none phone:w-full phone:h-1/2 phone:p-2">
-                  <div className="flex items-center gap-3 ">
-                    <Image
-                      src="/icons/ship.png"
-                      width={35}
-                      height={35}
-                      alt="buddy"
-                      className="phone:w-6 phone:h-6"
-                    />
-                    <h2 className="text-2xl font-bold phone:text-sm">
-                      Shipping Information
-                    </h2>
-                  </div>
-                  <p className="text-lg phone:text-xs">
-                    <span className="text-slate-400">Shipping</span> : Free
-                    Shipping Charges
-                  </p>
-                  <p className="text-lg phone:text-sm">
-                    <span className="text-slate-400">Delivery</span> : Estimated
-                    Between 2 to 3 days
-                  </p>
-                  <p className="text-lg flex items-center gap-2 phone:text-sm">
-                    <span className="text-slate-400">Warranty</span> :{" "}
-                    {productDetail.warranty} months{" "}
-                  </p>
-                  <p className="text-lg phone:text-sm">
-                    <span className="text-slate-400">Returns</span> :{" "}
-                    {productDetail.returnPolicy} days
-                  </p>
-                </div>
-              </div>
-              {productDetail?.specifications && (
-                <div className="w-full h-1/3 shadow-md border-x border-y rounded-lg p-5 flex flex-col items-start justify-between overflow-auto scrollbar-none phone:p-2">
-                  <div className="flex items-center  gap-3">
-                    <Image
-                      alt="buddy"
-                      src="/icons/spec.png"
-                      width={35}
-                      height={35}
-                      className="phone:w-6 phone:h-6"
-                    />
-                    <h2 className="text-2xl font-bold phone:text-sm">
-                      Specifications
-                    </h2>
-                  </div>
-                  {productDetail?.specifications?.map((spec) => {
-                    return (
-                      <h1
-                        key={spec.key}
-                        className="flex items-center gap-2 phone:text-xs"
-                      >
-                        <span className="text-lg font-bold text-slate-400 phone:text-sm">
-                          {spec.key}
-                        </span>{" "}
-                        :{" "}
-                        <span className="text-lg phone:text-sm">
-                          {spec.value}
-                        </span>
-                      </h1>
-                    );
-                  })}
-                </div>
-              )}
             </motion.div>
           )}
           {activeTab === "reviews" && (
