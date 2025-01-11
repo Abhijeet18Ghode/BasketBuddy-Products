@@ -41,40 +41,12 @@ const FilterSection = () => {
     "Sports",
     "Beauty",
   ];
-  const brands = [
-    "Samsung",
-    "Apple",
-    "Nike",
-    "Sony",
-    "Adidas",
-    "HP",
-    "LG",
-    "OnePlus",
-  ];
-
-  const availableBrands = useMemo(() => {
-    if (selectedCategories.length === 0) {
-      return brands;
-    } else {
-      const filtered = products.filter((product) =>
-        selectedCategories.includes(product.category)
-      );
-      return Array.from(new Set(filtered.map((product) => product.brand)));
-    }
-  }, [selectedCategories, products]);
 
   const handleCategoryChange = (category) => {
     setSelectedCategories((prev) =>
       prev.includes(category)
         ? prev.filter((c) => c !== category)
         : [...prev, category]
-    );
-    setFiltersApplied(true);
-  };
-
-  const handleBrandChange = (brand) => {
-    setSelectedBrands((prev) =>
-      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
     );
     setFiltersApplied(true);
   };
@@ -138,23 +110,7 @@ const FilterSection = () => {
     if (filtersApplied) {
       applyFilters();
     }
-  }, [
-    selectedCategories,
-    selectedBrands,
-    priceRange,
-    selectedRatings,
-    filtersApplied,
-  ]);
-
-  useEffect(() => {
-    setSelectedBrands((prevBrands) =>
-      prevBrands.filter((brand) => availableBrands.includes(brand))
-    );
-  }, [availableBrands]);
-
-  if (!isFilterSectionPage) {
-    return null;
-  }
+  }, [selectedCategories, priceRange, selectedRatings, filtersApplied]);
 
   return (
     <div className="w-full md:w-1/4 p-4 bg-white shadow-md rounded-lg desktop:text-sm sticky top-16 phone:hidden">
@@ -194,45 +150,6 @@ const FilterSection = () => {
               <label className="ml-2 text-gray-700">{category}</label>
             </div>
           ))}
-        </motion.div>
-      </div>
-
-      {/* Brand Filter */}
-      <div className="mb-6">
-        <div
-          className="flex justify-between items-center cursor-pointer p-2 bg-gray-100 rounded-lg"
-          onClick={() => setBrandOpen(!isBrandOpen)}
-        >
-          <h3 className="font-semibold text-lg">Brands</h3>
-          {isBrandOpen ? <FaChevronUp /> : <FaChevronDown />}
-        </div>
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{
-            height: isBrandOpen ? "auto" : 0,
-            opacity: isBrandOpen ? 1 : 0,
-          }}
-          className="overflow-hidden p-2"
-        >
-          {availableBrands.length > 0 ? (
-            availableBrands.map((brand, idx) => (
-              <div key={idx} className="flex items-center mt-2">
-                <div
-                  className="cursor-pointer"
-                  onClick={() => handleBrandChange(brand)}
-                >
-                  {selectedBrands.includes(brand) ? (
-                    <FaCheckSquare className="text-blue-500" />
-                  ) : (
-                    <FaRegSquare className="text-gray-400" />
-                  )}
-                </div>
-                <label className="ml-2 text-gray-700">{brand}</label>
-              </div>
-            ))
-          ) : (
-            <p className="mt-2 text-gray-500">No brands available.</p>
-          )}
         </motion.div>
       </div>
 

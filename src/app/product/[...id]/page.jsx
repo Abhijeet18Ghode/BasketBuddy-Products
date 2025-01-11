@@ -457,6 +457,7 @@ const Page = () => {
                     width={35}
                     height={35}
                     className="phone:w-6 phone:h-6"
+                    alt="icnos"
                   />
                   <h2 className="text-2xl font-bold phone:text-sm">
                     Description
