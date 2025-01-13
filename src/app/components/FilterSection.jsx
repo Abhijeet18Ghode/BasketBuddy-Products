@@ -32,15 +32,7 @@ const FilterSection = () => {
   const { products, setProducts, filteredProducts, setFilteredProducts } =
     useContext(ProductContext);
 
-  const categories = [
-    "Electronics",
-    "Fashion",
-    "Home & Kitchen",
-    "Books",
-    "Health",
-    "Sports",
-    "Beauty",
-  ];
+  const categories = ["", "", "", "", "", "", ""];
 
   const handleCategoryChange = (category) => {
     setSelectedCategories((prev) =>
